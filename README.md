@@ -3,8 +3,9 @@
   <img src="https://raw.githubusercontent.com/TS-DEV-DEBUG-V2/gb-emu/main/assets/gameboy.webp" width="180" />
 
   <span>
-    <h1>GB EMU</h1>
-  # Gameboy Emulator writen in C++
+     <h1>GBEMU</h1>
+    <h1> Gameboy Emulator writen in C++</h1>
+
   </span>
 </p>
 # Features
