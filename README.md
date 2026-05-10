@@ -1,16 +1,17 @@
-# Gameboy Emulator writen in C++
-# Features
-- Load .gb roms
-- Input
-- cycle-accurate APU (see src/gb_apu.cpp)
+
 <p align="left">
   <img src="https://raw.githubusercontent.com/TS-DEV-DEBUG-V2/gb-emu/main/assets/gameboy.webp" width="180" />
 
   <span>
     <h1>GB EMU</h1>
-    A Game Boy emulator project.
+  # Gameboy Emulator writen in C++
   </span>
 </p>
+# Features
+- Load .gb roms
+- Input
+- cycle-accurate APU (see src/gb_apu.cpp)
+
 ## Screenshots 
 
 ### Super Mario Land
