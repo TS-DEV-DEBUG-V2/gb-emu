@@ -3,7 +3,15 @@
 - Load .gb roms
 - Input
 - cycle-accurate APU (see src/gb_apu.cpp)
-## Screenshots
+<p align="left">
+  <img src="https://raw.githubusercontent.com/TS-DEV-DEBUG-V2/gb-emu/main/assets/gameboy.webp" width="180" />
+
+  <span>
+    <h1>GB EMU</h1>
+    A Game Boy emulator project.
+  </span>
+</p>
+## Screenshots 
 
 ### Super Mario Land
 ![Super Mario Land](https://raw.githubusercontent.com/TS-DEV-DEBUG-V2/gb-emu/main/assets/screenshot1.jpg)
