@@ -7,7 +7,6 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/platform-Windows-blue?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/platform-Linux-green?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/platform-WebAssembly-orange?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/language-C%2B%2B-00599C?style=for-the-badge&logo=cplusplus"/>
   <img src="https://img.shields.io/badge/emulator-GameBoy-8bac0f?style=for-the-badge"/>
