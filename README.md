@@ -14,9 +14,6 @@
   <img src="https://img.shields.io/badge/project-hobby-purple?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/audio-APU-yellow?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/build-CMake-blueviolet?style=for-the-badge"/>
-</p>
-
-<p align="center">
   <img src="https://img.shields.io/github/stars/TS-DEV-DEBUG-V2/gb-emu?style=for-the-badge"/>
   <img src="https://img.shields.io/github/forks/TS-DEV-DEBUG-V2/gb-emu?style=for-the-badge"/>
   <img src="https://img.shields.io/github/issues/TS-DEV-DEBUG-V2/gb-emu?style=for-the-badge"/>
@@ -27,9 +24,6 @@
   <img src="https://img.shields.io/github/languages/top/TS-DEV-DEBUG-V2/gb-emu?style=for-the-badge"/>
   <img src="https://img.shields.io/github/languages/code-size/TS-DEV-DEBUG-V2/gb-emu?style=for-the-badge"/>
   <img src="https://img.shields.io/github/watchers/TS-DEV-DEBUG-V2/gb-emu?style=for-the-badge"/>
-</p>
-
-<p align="center">
   <img src="https://img.shields.io/badge/accuracy-cycle--accurate-success?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/audio-working-success?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/input-working-success?style=for-the-badge"/>
