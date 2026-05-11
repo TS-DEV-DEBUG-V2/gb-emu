@@ -13,6 +13,13 @@
 - Input
 - cycle-accurate APU (see src/gb_apu.cpp)
 
+## supported mappers
+- MBC_NONE (0x00) — no banking
+- MBC1 (0x01, 0x02, 0x03)
+- MBC2 (0x05, 0x06)
+- MBC3 (0x0F, 0x10, 0x11, 0x12, 0x13)
+- MBC5 (0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E)
+
 ## Screenshots 
 
 ### Super Mario Land
@@ -32,6 +39,7 @@
 ## Build
 - gonna add build instructions soon 
 # TODO
-- add saving
-- fix some ppu stuff on some games (still VERY functionable but in for example super mario land the timer text jiggles abit)
+- ~~add saving~~ (fully implemented now)
+- ~~fix some ppu stuff on some games (still VERY functionable but in for example super mario land the timer text jiggles abit)~~ (fully implemented now)
+- add more mappers
 - add save states
