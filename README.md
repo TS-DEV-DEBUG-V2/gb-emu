@@ -1,46 +1,115 @@
-
-<p align="left">
-  <img src="https://raw.githubusercontent.com/TS-DEV-DEBUG-V2/gb-emu/main/assets/gameboy.webp" width="180" />
-
-  <span>
-     <h1>GBEMU</h1>
-    <h1> Gameboy Emulator writen in C++</h1>
-
-  </span>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/TS-DEV-DEBUG-V2/gb-emu/main/assets/gameboy.webp" width="180" alt="GBEMU Logo"/>
 </p>
 
+<h1 align="center">GBEMU</h1>
+<h3 align="center">A Nintendo Game Boy Emulator written in C++</h3>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/platform-Windows-blue?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/platform-Linux-green?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/platform-WebAssembly-orange?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/language-C%2B%2B-00599C?style=for-the-badge&logo=cplusplus"/>
+  <img src="https://img.shields.io/badge/emulator-GameBoy-8bac0f?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/status-active-success?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/project-hobby-purple?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/rendering-OpenGL-red?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/audio-APU-yellow?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/build-CMake-blueviolet?style=for-the-badge"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/github/stars/TS-DEV-DEBUG-V2/gb-emu?style=for-the-badge"/>
+  <img src="https://img.shields.io/github/forks/TS-DEV-DEBUG-V2/gb-emu?style=for-the-badge"/>
+  <img src="https://img.shields.io/github/issues/TS-DEV-DEBUG-V2/gb-emu?style=for-the-badge"/>
+  <img src="https://img.shields.io/github/license/TS-DEV-DEBUG-V2/gb-emu?style=for-the-badge"/>
+  <img src="https://img.shields.io/github/last-commit/TS-DEV-DEBUG-V2/gb-emu?style=for-the-badge"/>
+  <img src="https://img.shields.io/github/repo-size/TS-DEV-DEBUG-V2/gb-emu?style=for-the-badge"/>
+  <img src="https://img.shields.io/github/commit-activity/m/TS-DEV-DEBUG-V2/gb-emu?style=for-the-badge"/>
+  <img src="https://img.shields.io/github/languages/top/TS-DEV-DEBUG-V2/gb-emu?style=for-the-badge"/>
+  <img src="https://img.shields.io/github/languages/code-size/TS-DEV-DEBUG-V2/gb-emu?style=for-the-badge"/>
+  <img src="https://img.shields.io/github/watchers/TS-DEV-DEBUG-V2/gb-emu?style=for-the-badge"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/accuracy-cycle--accurate-success?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/audio-working-success?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/input-working-success?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/saving-implemented-success?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/save_states-planned-lightgrey?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/mappers-supported-blue?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/web_build-working-success?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/ppu-improving-orange?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/apu-cycle_accurate-success?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/license-MIT-brightgreen?style=for-the-badge"/>
+</p>
+
+---
+
 # Features
-- Load .gb roms
-- Input
-- cycle-accurate APU (see src/gb_apu.cpp)
 
-## supported mappers
-- MBC_NONE (0x00) — no banking
-- MBC1 (0x01, 0x02, 0x03)
-- MBC2 (0x05, 0x06)
-- MBC3 (0x0F, 0x10, 0x11, 0x12, 0x13)
-- MBC5 (0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E)
+- Load `.gb` ROMs
+- Functional input handling
+- Cycle-accurate APU implementation
+- WebAssembly build
+- Save support
+- Multiple mapper implementations
+- Hobby project focused on accuracy and learning
 
-## Screenshots 
+---
 
-### Super Mario Land
+# Supported Mappers
+
+| Mapper | IDs |
+|---|---|
+| **MBC_NONE** | `0x00` |
+| **MBC1** | `0x01`, `0x02`, `0x03` |
+| **MBC2** | `0x05`, `0x06` |
+| **MBC3** | `0x0F`, `0x10`, `0x11`, `0x12`, `0x13` |
+| **MBC5** | `0x19`, `0x1A`, `0x1B`, `0x1C`, `0x1D`, `0x1E` |
+
+---
+
+# Screenshots
+
+## Super Mario Land
 ![Super Mario Land](https://raw.githubusercontent.com/TS-DEV-DEBUG-V2/gb-emu/main/assets/screenshot1.jpg)
 
-### Metroid II
+## Metroid II
 ![Metroid II](https://raw.githubusercontent.com/TS-DEV-DEBUG-V2/gb-emu/main/assets/screenshot2.jpg)
 
-### Pokémon Yellow Version
+## Pokémon Yellow Version
 ![Pokémon Yellow Version](https://raw.githubusercontent.com/TS-DEV-DEBUG-V2/gb-emu/main/assets/screenshot3.jpg)
 
-### Pokémon Red Version (running in the web version)
+## Pokémon Red Version (Web Build)
 ![Pokémon Red Version](https://raw.githubusercontent.com/TS-DEV-DEBUG-V2/gb-emu/main/assets/screenshot4.jpg)
-## This isnt supposed to be mainstream its just a hobby project but i will maintain it 
-### Demo
-- you can play a demo of it (working with pokemon fire red) [here](https://ts-dev-debug-v2.github.io/gb-emu/wasm/) or if you are on a VERY old browser, click [here](https://ts-dev-debug-v2.github.io/gb-emu/js/)
-## Build
-- gonna add build instructions soon 
+
+---
+
+# Demo
+
+You can try the WebAssembly version here:
+
+### [Play Demo](https://ts-dev-debug-v2.github.io/gb-emu/wasm/)
+
+---
+
+# Build
+
+Build instructions will be added soon.
+
+---
+
 # TODO
-- ~~add saving~~ (fully implemented now)
-- ~~fix some ppu stuff on some games (still VERY functionable but in for example super mario land the timer text jiggles abit)~~ (fully implemented now)
+
+- ~~add saving~~ (Implemented !)
+- ~~fix some PPU issues on certain games~~ (Implemented !)
 - add more mappers
 - add save states
+
+---
+
+# Notes
+
+This project is mainly a hobby project focused on learning emulator development and low-level systems programming.  
+It is not intended to compete with mainstream emulators, but it will continue to be maintained and improved over time.
