@@ -3,36 +3,164 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Game Boy Emulator</title>
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
       * { margin: 0; padding: 0; box-sizing: border-box; }
       html, body {
         width: 100%;
         height: 100%;
-        background: #111;
+        background: #000;
         overflow: hidden;
+        font-family: 'JetBrains Mono', monospace;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+      }
+
+      #header {
+        flex-shrink: 0;
+        text-align: center;
+        padding: 8px 16px;
+        background: #0a0a0a;
+        border-bottom: 1px solid #1a1a1a;
         display: flex;
         align-items: center;
         justify-content: center;
+        gap: 16px;
       }
+
+      #header h1 {
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: #9ece6a;
+      }
+
+      #header h1 span {
+        color: #555;
+        font-weight: 400;
+      }
+
+      #header a {
+        font-size: 11px;
+        color: #565f89;
+        text-decoration: none;
+        border: 1px solid #1a1a1a;
+        padding: 3px 8px;
+        border-radius: 4px;
+        transition: color 0.2s, border-color 0.2s;
+      }
+
+      #header a:hover {
+        color: #9ece6a;
+        border-color: #9ece6a;
+      }
+
+      #canvas-wrap {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+        overflow: hidden;
+        min-height: 0;
+      }
+
       canvas#canvas {
         image-rendering: pixelated;
         image-rendering: crisp-edges;
         background: #000;
+        display: block;
+      }
+
+      #controls {
+        flex-shrink: 0;
+        text-align: center;
+        padding: 8px 16px;
+        background: #0a0a0a;
+        border-top: 1px solid #1a1a1a;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 6px 20px;
+        font-size: 11px;
+        color: #444;
+      }
+
+      #controls .ctrl-group {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      #controls kbd {
+        display: inline-block;
+        background: #1a1a1a;
+        color: #888;
+        border: 1px solid #2a2a2a;
+        border-radius: 3px;
+        padding: 1px 5px;
+        font-family: inherit;
+        font-size: 10px;
+        line-height: 1.4;
+      }
+
+      #controls .ctrl-label {
+        color: #565f89;
+      }
+
+      #drop-overlay {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.85);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font: 18px 'JetBrains Mono', monospace;
+        color: #9ece6a;
+        border: 3px dashed #9ece6a;
+        z-index: 999;
+        pointer-events: none;
+      }
+      #drop-overlay.active {
+        display: flex;
       }
     </style>
   </head>
   <body>
-    <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
+    <div id="header">
+      <h1>GB-EMU <span>by TS</span></h1>
+	  <span>Also btw you can drag your own roms into this window and itll load.</span>
+      <a href="https://github.com/ts-dev-debug-v2/gb-emu" target="_blank" rel="noopener">VIEW SRC</a>
+    </div>
+
+    <div id="canvas-wrap">
+      <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
+    </div>
+
+    <div id="controls">
+      <div class="ctrl-group"><kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> <span class="ctrl-label">D-Pad</span></div>
+      <div class="ctrl-group"><kbd>Z</kbd> <span class="ctrl-label">A</span></div>
+      <div class="ctrl-group"><kbd>X</kbd> <span class="ctrl-label">B</span></div>
+      <div class="ctrl-group"><kbd>Enter</kbd> <span class="ctrl-label">Start</span></div>
+      <div class="ctrl-group"><kbd>Shift</kbd> <span class="ctrl-label">Select</span></div>
+    </div>
+
+    <div id="drop-overlay">Drop ROM file here</div>
+
     <script type="text/javascript">
       var GB_W = 160;
       var GB_H = 144;
       var canvasElement = document.getElementById('canvas');
+      var canvasWrap = document.getElementById('canvas-wrap');
+      var dropOverlay = document.getElementById('drop-overlay');
 
       function resizeCanvas() {
-        var vw = window.innerWidth;
-        var vh = window.innerHeight;
-        var scale = Math.floor(Math.min(vw / GB_W, vh / GB_H));
+        var wrapW = canvasWrap.clientWidth;
+        var wrapH = canvasWrap.clientHeight;
+        var scale = Math.floor(Math.min(wrapW / GB_W, wrapH / GB_H));
         if (scale < 1) scale = 1;
         canvasElement.style.width = (GB_W * scale) + 'px';
         canvasElement.style.height = (GB_H * scale) + 'px';
@@ -42,22 +170,81 @@
       window.addEventListener('resize', resizeCanvas);
 
       window.romurl = window.romurl || 'test.gb';
+
+      var romBase = window.romurl.replace(/\.[^/.]+$/, "").split('/').pop().split('\\').pop();
+      var saveName = romBase + '.sav';
+      var saveKey = 'gb_save_' + romBase;
+
+      window.addEventListener('beforeunload', function() {
+        try {
+          var data = FS.readFile(saveName);
+          var bin = '';
+          for (var i = 0; i < data.length; i++) bin += String.fromCharCode(data[i]);
+          localStorage.setItem(saveKey, btoa(bin));
+        } catch(e) {}
+      });
+
+      document.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        dropOverlay.classList.add('active');
+      });
+
+      document.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        dropOverlay.classList.remove('active');
+      });
+
+      document.addEventListener('drop', function(e) {
+        e.preventDefault();
+        dropOverlay.classList.remove('active');
+        var file = e.dataTransfer.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          var data = new Uint8Array(e.target.result);
+          var bin = '';
+          for (var i = 0; i < data.length; i++) bin += String.fromCharCode(data[i]);
+          sessionStorage.setItem('gb_drop_rom', btoa(bin));
+          window.romurl = file.name;
+          location.reload();
+        };
+        reader.readAsArrayBuffer(file);
+      });
+
       var Module = {
-        arguments: ['rom.gb'],
+        arguments: ['rom.gb', saveName, saveKey],
         canvas: canvasElement,
         print: function() {
           console.log(Array.prototype.join.call(arguments, ' '));
         },
         preRun: [function() {
-          var xhr = new XMLHttpRequest();
-          xhr.open('GET', window.romurl, false);
-          xhr.overrideMimeType('text/plain; charset=x-user-defined');
-          xhr.send(null);
-          if (xhr.status === 200 || xhr.status === 0) {
-            var data = new Uint8Array(xhr.responseText.length);
-            for (var i = 0; i < data.length; i++) data[i] = xhr.responseText.charCodeAt(i) & 0xFF;
+          var dropRom = sessionStorage.getItem('gb_drop_rom');
+          if (dropRom) {
+            sessionStorage.removeItem('gb_drop_rom');
+            var bin = atob(dropRom);
+            var data = new Uint8Array(bin.length);
+            for (var i = 0; i < bin.length; i++) data[i] = bin.charCodeAt(i);
             FS.writeFile('rom.gb', data);
+          } else {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', window.romurl, false);
+            xhr.overrideMimeType('text/plain; charset=x-user-defined');
+            xhr.send(null);
+            if (xhr.status === 200 || xhr.status === 0) {
+              var data = new Uint8Array(xhr.responseText.length);
+              for (var i = 0; i < data.length; i++) data[i] = xhr.responseText.charCodeAt(i) & 0xFF;
+              FS.writeFile('rom.gb', data);
+            }
           }
+          try {
+            var save = localStorage.getItem(saveKey);
+            if (save) {
+              var bin = atob(save);
+              var sdata = new Uint8Array(bin.length);
+              for (var i = 0; i < bin.length; i++) sdata[i] = bin.charCodeAt(i);
+              FS.writeFile(saveName, sdata);
+            }
+          } catch(e) { console.log('save load error: ' + e); }
         }]
       };
     </script>
