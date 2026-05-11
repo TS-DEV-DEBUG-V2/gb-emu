@@ -12,7 +12,6 @@
   <img src="https://img.shields.io/badge/emulator-GameBoy-8bac0f?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/status-active-success?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/project-hobby-purple?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/rendering-OpenGL-red?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/audio-APU-yellow?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/build-CMake-blueviolet?style=for-the-badge"/>
 </p>
