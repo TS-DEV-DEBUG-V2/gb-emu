@@ -71,17 +71,20 @@
 # Screenshots
 
 ## Super Mario Land
-![Super Mario Land](https://raw.githubusercontent.com/TS-DEV-DEBUG-V2/gb-emu/main/assets/screenshot1.jpg)
+
+<img src="https://raw.githubusercontent.com/TS-DEV-DEBUG-V2/gb-emu/main/assets/screenshot1.jpg" alt="Super Mario Land" style="display:block; margin:0 auto; width:300px;">
 
 ## Metroid II
-![Metroid II](https://raw.githubusercontent.com/TS-DEV-DEBUG-V2/gb-emu/main/assets/screenshot2.jpg)
+
+<img src="https://raw.githubusercontent.com/TS-DEV-DEBUG-V2/gb-emu/main/assets/screenshot2.jpg" alt="Metroid II" style="display:block; margin:0 auto; width:300px;">
 
 ## Pokémon Yellow Version
-![Pokémon Yellow Version](https://raw.githubusercontent.com/TS-DEV-DEBUG-V2/gb-emu/main/assets/screenshot3.jpg)
+
+<img src="https://raw.githubusercontent.com/TS-DEV-DEBUG-V2/gb-emu/main/assets/screenshot3.jpg" alt="Pokémon Yellow Version" style="display:block; margin:0 auto; width:300px;">
 
 ## Pokémon Red Version (Web Build)
-![Pokémon Red Version](https://raw.githubusercontent.com/TS-DEV-DEBUG-V2/gb-emu/main/assets/screenshot4.jpg)
 
+<img src="https://raw.githubusercontent.com/TS-DEV-DEBUG-V2/gb-emu/main/assets/screenshot4.jpg" alt="Pokémon Red Version" style="display:block; margin:0 auto; width:300px;">
 ---
 
 # Demo
