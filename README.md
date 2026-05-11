@@ -61,7 +61,8 @@
 | **MBC5** | `0x19`, `0x1A`, `0x1B`, `0x1C`, `0x1D`, `0x1E` |
 
 ---
-
+# Development
+![dev](https://repobeats.axiom.co/api/embed/dbddf9f765e9b0078408c44f59808bbab1282d88.svg "Repobeats analytics image")
 # Screenshots
 
 ## Super Mario Land
